@@ -5,3 +5,4 @@ set -x \
  && chmod +x /usr/local/bin/docker-compose \
  && docker-compose -v
  echo "this is conflict"
+
