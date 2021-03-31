@@ -1,2 +1,2 @@
-echo "this is conflict"
+echo "this is conflict from sit"
 
