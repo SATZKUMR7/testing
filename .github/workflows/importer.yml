@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Install GitHub Actions Importer
         run: |
-          gh actions-importer version || gh extension install github/gh-actions-importer
+          gh extension install github/gh-actions-importer
           gh actions-importer update
         env:
           GH_TOKEN: ${{ github.token }}
