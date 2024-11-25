@@ -7,11 +7,11 @@ defaults:
   run:
     shell: bash
 env:
-  GITHUB_INSTANCE_URL: ${{ dev.GH_INSTANCE_URL || 'https://github.com' }}
-  GITHUB_ACCESS_TOKEN: ${{ dev.GH_ACCESS_TOKEN }}
-  JENKINS_INSTANCE_URL: ${{ dev.JENKINS_INSTANCE_URL }}
-  JENKINS_USERNAME: ${{ dev.jenkins_username }}
-  JENKINS_ACCESS_TOKEN: ${{ dev.jenkins_access_token }}
+  GITHUB_INSTANCE_URL: ${{ variables.GH_INSTANCE_URL || 'https://github.com' }}
+  GITHUB_ACCESS_TOKEN: ${{ variables.GH_ACCESS_TOKEN }}
+  JENKINS_INSTANCE_URL: ${{ variables.JENKINS_INSTANCE_URL }}
+  JENKINS_USERNAME: ${{ variables.jenkins_username }}
+  JENKINS_ACCESS_TOKEN: ${{ variables.jenkins_access_token }}
 
 jobs:
   execute-actions-importer:
