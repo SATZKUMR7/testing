@@ -14,10 +14,9 @@ env:
   JENKINS_ACCESS_TOKEN: ${{ dev.jenkins_access_token }}
 
 jobs:
-  build:
+  execute-actions-importer:
     runs-on:
       - ubuntu-latest
-  execute-actions-importer:
     outputs:
       command: ${{ steps.prepare.outputs.command }}
       log-filename: ${{ steps.logs.outputs.filename }}
