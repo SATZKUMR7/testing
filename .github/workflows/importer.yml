@@ -27,7 +27,11 @@ jobs:
           gh actions-importer update
         env:
           GH_TOKEN: ${{ github.token }}
-      - name: display variables
+  dry-run:
+    runs-on: ubuntu-latest
+    needs: execute-actions-importer
+    steps:
+      - name: Run dry run 
         run: |
-          echo '${{env.JENKINS_INSTANCE_URL}}'
+          gh actions-importer dry-run jenkins ${{env.JENKINS_INSTANCE_URL}} -o output/dryrun
     
