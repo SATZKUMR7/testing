@@ -32,4 +32,11 @@ jobs:
       - name: Run dry run 
         run: |
           gh actions-importer dry-run jenkins --jenkins-username ${{env.JENKINS_USERNAME}} --jenkins-access-token ${{env.JENKINS_ACCESS_TOKEN}} --source-url ${{env.JENKINS_INSTANCE_URL}} -o output/dryrun
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          path: output/
+          name: output
+          
     
