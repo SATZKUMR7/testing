@@ -29,5 +29,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: display variables
         run: |
-          echo '{{env.JENKINS_INSTANCE_URL}}'
+          echo '${{env.JENKINS_INSTANCE_URL}}'
     
