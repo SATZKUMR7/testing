@@ -1,0 +1,16 @@
+name: java_project
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on:
+      - ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: run command
+      shell: bash
+      run: mvn install -Dmaven.test.skip=true
+    - name: run command
+      shell: bash
+      run: mvn install -Dmaven.test.skip=true
