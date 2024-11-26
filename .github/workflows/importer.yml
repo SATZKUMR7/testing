@@ -31,5 +31,5 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Run dry run 
         run: |
-          gh actions-importer dry-run jenkins ${{env.JENKINS_INSTANCE_URL}} -o output/dryrun
+          gh actions-importer dry-run jenkins --jenkins-username ${{env.JENKINS_USERNAME}} --jenkins-access-token ${{env.JENKINS_ACCESS_TOKEN}} --jenkins-instance-url ${{env.JENKINS_INSTANCE_URL}} -o output/dryrun
     
