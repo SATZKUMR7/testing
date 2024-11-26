@@ -27,3 +27,7 @@ jobs:
           gh actions-importer update
         env:
           GH_TOKEN: ${{ github.token }}
+      - name: display variables
+        run: |
+          echo {{env.JENKINS_INSTANCE_URL}}
+    
