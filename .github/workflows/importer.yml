@@ -10,10 +10,11 @@ defaults:
 
 env:
   GITHUB_INSTANCE_URL: ${{ vars.GH_INSTANCE_URL || 'https://github.com' }}
-  GITHUB_ACCESS_TOKEN: ${{ vars.GH_ACCESS_TOKEN }}
-  JENKINS_INSTANCE_URL: ${{ vars.JENKINS_INSTANCE_URL }}
+  GITHUB_ACCESS_TOKEN: ${{ secret.GH_ACCESS_TOKEN }}
+  JENKINS_SOURCE_URL: ${{ vars.JENKINS_INSTANCE_URL }}
   JENKINS_USERNAME: ${{ vars.jenkins_username }}
-  JENKINS_ACCESS_TOKEN: ${{ vars.jenkins_access_token }}
+  JENKINS_ACCESS_TOKEN: ${{ secret.jenkins_access_token }}
+  JENKINS_INSTANCE_URL: ${{vars.JENKINS_URL}}
 
 jobs:
   execute-actions-importer:
@@ -31,12 +32,16 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Run dry run 
         run: |
-          gh actions-importer dry-run jenkins --jenkins-username ${{env.JENKINS_USERNAME}} --jenkins-access-token ${{env.JENKINS_ACCESS_TOKEN}} --jenkins-instance-url http://3.23.114.122:8080/ --source-url ${{env.JENKINS_INSTANCE_URL}} -o output/dryrun
+          gh actions-importer dry-run jenkins --jenkins-username ${{env.JENKINS_USERNAME}} --jenkins-access-token ${{env.JENKINS_ACCESS_TOKEN}} --jenkins-instance-url ${{env.JENKINS_INSTANCE_URL}} --source-url ${{env.JENKINS_SOURCE_URL}} -o output/dryrun
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           path: output/
           name: output
+
+      - name: Run migration 
+        run: |
+          gh actions-importer migrate jenkins --jenkins-username ${{env.JENKINS_USERNAME}} --jenkins-access-token ${{env.JENKINS_ACCESS_TOKEN}} --jenkins-instance-url ${{env.JENKINS_INSTANCE_URL}} --source-url ${{env.JENKINS_SOURCE_URL}} -o output/dryrun --target-url https://github.com/satzkumr7/testing
           
     
