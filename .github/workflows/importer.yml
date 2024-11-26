@@ -3,9 +3,11 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+
 defaults:
   run:
     shell: bash
+
 env:
   GITHUB_INSTANCE_URL: ${{ vars.GH_INSTANCE_URL || 'https://github.com' }}
   GITHUB_ACCESS_TOKEN: ${{ vars.GH_ACCESS_TOKEN }}
@@ -27,10 +29,6 @@ jobs:
           gh actions-importer update
         env:
           GH_TOKEN: ${{ github.token }}
-  dry-run:
-    runs-on: ubuntu-latest
-    needs: execute-actions-importer
-    steps:
       - name: Run dry run 
         run: |
           gh actions-importer dry-run jenkins ${{env.JENKINS_INSTANCE_URL}} -o output/dryrun
